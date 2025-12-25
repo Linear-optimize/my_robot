@@ -39,7 +39,7 @@ async def add(ctx,a:int,b:int):
 @bot.hybrid_command()
 async def ask(ctx,question:str):
     await ctx.defer()
-    response= await client.chat.completions.create(
+    response=  client.chat.completions.create(
          model="gpt-4o",
          messages=[
              {"role":"user","content":question}
