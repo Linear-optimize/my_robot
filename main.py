@@ -24,7 +24,7 @@ bot =commands.Bot(command_prefix="!",intents=intents)
 
 @bot.command()
 @commands.has_permissions(administrator=True)
-async def synccomands(ctx):
+async def synccommands(ctx):
     await bot.tree.sync()
     await ctx.send("同步成功")
 
@@ -59,7 +59,7 @@ async def draw(ctx):
 
     url="https://www.98qy.com/sjbz/api.php?lx=dongman&format=json"
 
-    response=requests.get(headers=headers,url=url)
+    response=requests.get(url=url,headers=headers)
 
     json_image=json.loads(response.content)
     url_image=json_image['imgurl']
