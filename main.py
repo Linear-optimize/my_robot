@@ -70,7 +70,10 @@ async def draw(ctx):
             data = await response.json(content_type=None)
 
     url_image = data["imgurl"]
-    await ctx.send(url_image)
+
+    embed = discord.Embed()
+    embed.set_image(url=url_image)
+    await ctx.send(embed=embed)
 
 
 @bot.hybrid_command()
