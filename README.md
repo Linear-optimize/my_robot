@@ -26,4 +26,6 @@ uv add openai discord.py requests tencentcloud-sdk-python
 uv run main.py
 ```
 
-
+## 改进点
+- 未使用**Cogs**等架构封装,代码可维护性差
+- 未做错误处理,安全性不高
