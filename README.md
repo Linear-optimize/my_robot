@@ -2,7 +2,7 @@
 
 ## ✨功能特点
  - ✅ **AI问答** - 接入了**chatgpt**
- - ✅ **简单计算** - 加法
+ - ✅ **天气询问** - 使用OpenWeather的api
  - ✅ **随机图片** - 第三方api
  - ✅ **简单翻译** - tencent翻译api
  - ✅ **斜杠命令** - 支持支持 Hybrid Commands（同步后可在 Discord 直接输入 `/` 使用）

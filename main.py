@@ -18,6 +18,8 @@ token = os.getenv("DISCORD_BOT_TOKEN")
 secretld = os.getenv("Secretld")
 secretkey = os.getenv("SecretKey")
 
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
+
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -87,6 +89,50 @@ async def translate(ctx, source: str, target: str, phrase: str):
     result = data["TargetText"]
 
     await ctx.send(result)
+
+
+@bot.hybrid_command()
+async def weather(ctx, city: str):
+    await ctx.defer()
+
+    geo = requests.get(
+        "http://api.openweathermap.org/geo/1.0/direct",
+        params={"q": city, "limit": 1, "appid": API_KEY},
+    ).json()
+
+    lat = geo[0]["lat"]
+    lon = geo[0]["lon"]
+
+    req = requests.get(
+        "https://api.openweathermap.org/data/2.5/weather",
+        params={
+            "lat": lat,
+            "lon": lon,
+            "appid": API_KEY,
+            "units": "metric",
+            "lang": "zh_cn",
+        },
+    ).json()
+
+    city_name = req["name"]
+    desc = req["weather"][0]["description"]
+    temp = req["main"]["temp"]
+    humidity = req["main"]["humidity"]
+    wind_speed = req["wind"]["speed"]
+
+    embed = discord.Embed(
+        title=f"🌤 {city_name} 当前天气",
+        description=desc,
+        color=0x4FC3F7,
+    )
+
+    embed.add_field(name="🌡 温度", value=f"{temp} °C", inline=True)
+    embed.add_field(name="💧 湿度", value=f"{humidity} %", inline=True)
+    embed.add_field(name="🌬 风速", value=f"{wind_speed} m/s", inline=True)
+
+    embed.set_footer(text="数据来源：OpenWeatherMap")
+
+    await ctx.send(embed=embed)
 
 
 bot.run(token)
