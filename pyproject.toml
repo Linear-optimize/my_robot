@@ -8,5 +8,6 @@ dependencies = [
     "aiohttp>=3.13.2",
     "discord-py>=2.6.4",
     "openai>=2.14.0",
+    "python-dotenv>=1.2.1",
     "tencentcloud-sdk-python>=3.1.19",
 ]
