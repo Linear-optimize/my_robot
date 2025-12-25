@@ -3,14 +3,14 @@ import discord
 from discord.ext import commands
 import json
 import aiohttp
-from openai import OpenAI
+from openai import AsyncOpenAI
 from tencentcloud.common import credential
 from tencentcloud.tmt.v20180321 import tmt_client, models
 
 
 api_key = os.getenv("OPENAI_API_KEY")
 
-client = OpenAI(api_key=api_key, base_url="https://api.bltcy.ai/v1")
+client = AsyncOpenAI(api_key=api_key, base_url="https://api.bltcy.ai/v1")
 
 
 token = os.getenv("DISCORD_BOT_TOKEN")
@@ -47,7 +47,7 @@ async def add(ctx, a: int, b: int):
 @bot.hybrid_command()
 async def ask(ctx, question: str):
     await ctx.defer()
-    response = client.chat.completions.create(
+    response = await client.chat.completions.create(
         model="gpt-4o", messages=[{"role": "user", "content": question}]
     )
 
@@ -76,8 +76,9 @@ async def draw(ctx):
 @bot.hybrid_command()
 async def translate(ctx, source: str, target: str, phrase: str):
     await ctx.defer()
+
     cred = credential.Credential(secret_id=secretld, secret_key=secretkey)
-    client = tmt_client.TmtClient(cred, "ap-beijing")
+    client_tencent = tmt_client.TmtClient(cred, "ap-beijing")
 
     req = models.TextTranslateRequest()
     req.SourceText = phrase
@@ -85,7 +86,7 @@ async def translate(ctx, source: str, target: str, phrase: str):
     req.Target = target
     req.ProjectId = 0
 
-    resp = client.TextTranslate(req)
+    resp = client_tencent.TextTranslate(req)
     data = json.loads(resp.to_json_string())
     result = data["TargetText"]
 
