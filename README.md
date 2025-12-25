@@ -9,11 +9,11 @@
 ## 安装依赖
 > pip
 ```bash
-pip install openai discord.py
+pip install openai discord.py requests
 ```
 > uv
 ```bash
-uv add openai discord.py
+uv add openai discord.py requests
 ```
 
 ## 🚀快速开始
