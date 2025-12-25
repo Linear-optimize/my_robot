@@ -37,7 +37,7 @@ async def on_ready():
     if not hasattr(bot, "http_session"):
         bot.http_session = aiohttp.ClientSession()
     await load_cogs()
-    for guild in bot.guilds:  # 如果你只想同步到某个服务器
+    for guild in bot.guilds:
         await bot.tree.sync(guild=guild)
     print(f"{bot.user} 已上线！")
 
