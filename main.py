@@ -2,7 +2,7 @@ import os
 import discord
 from discord.ext import commands
 import json
-import requests
+import aiohttp
 from openai import OpenAI
 from tencentcloud.common import credential
 from tencentcloud.tmt.v20180321 import tmt_client, models
@@ -65,10 +65,11 @@ async def draw(ctx):
 
     url = "https://www.98qy.com/sjbz/api.php?lx=dongman&format=json"
 
-    response = requests.get(url=url, headers=headers)
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url=url, headers=headers) as response:
+            data = await response.json(content_type=None)
 
-    json_image = json.loads(response.content)
-    url_image = json_image["imgurl"]
+    url_image = data["imgurl"]
     await ctx.send(url_image)
 
 
@@ -95,24 +96,28 @@ async def translate(ctx, source: str, target: str, phrase: str):
 async def weather(ctx, city: str):
     await ctx.defer()
 
-    geo = requests.get(
-        "http://api.openweathermap.org/geo/1.0/direct",
-        params={"q": city, "limit": 1, "appid": API_KEY},
-    ).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            "http://api.openweathermap.org/geo/1.0/direct",
+            params={"q": city, "limit": 1, "appid": API_KEY},
+        ) as req:
+            geo = await req.json()
 
     lat = geo[0]["lat"]
     lon = geo[0]["lon"]
 
-    req = requests.get(
-        "https://api.openweathermap.org/data/2.5/weather",
-        params={
-            "lat": lat,
-            "lon": lon,
-            "appid": API_KEY,
-            "units": "metric",
-            "lang": "zh_cn",
-        },
-    ).json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            "https://api.openweathermap.org/data/2.5/weather",
+            params={
+                "lat": lat,
+                "lon": lon,
+                "appid": API_KEY,
+                "units": "metric",
+                "lang": "zh_cn",
+            },
+        ) as reqs:
+            req = await reqs.json()
 
     city_name = req["name"]
     desc = req["weather"][0]["description"]

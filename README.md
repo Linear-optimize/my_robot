@@ -10,11 +10,11 @@
 ## 📦安装依赖
 > pip
 ```bash
-pip install openai discord.py requests tencentcloud-sdk-python
+pip install openai discord.py aiohttp tencentcloud-sdk-python
 ```
 > uv
 ```bash
-uv add openai discord.py requests tencentcloud-sdk-python
+uv add openai discord.py aiohttp tencentcloud-sdk-python
 ```
 
 ## 🚀快速开始

@@ -379,17 +379,17 @@ name = "my-robot"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "aiohttp" },
     { name = "discord-py" },
     { name = "openai" },
-    { name = "requests" },
     { name = "tencentcloud-sdk-python" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "aiohttp", specifier = ">=3.13.2" },
     { name = "discord-py", specifier = ">=2.6.4" },
     { name = "openai", specifier = ">=2.14.0" },
-    { name = "requests", specifier = ">=2.32.5" },
     { name = "tencentcloud-sdk-python", specifier = ">=3.1.19" },
 ]
 
