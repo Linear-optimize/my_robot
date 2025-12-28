@@ -30,11 +30,11 @@ MY_ROBOT
 ## 📦安装依赖
 > pip
 ```bash
-pip install openai discord.py aiohttp tencentcloud-sdk-python python-dotenv
+pip install openai discord.py aiohttp tencentcloud-sdk-python python-dotenv yt-dlp
 ```
 > uv
 ```bash
-uv add openai discord.py aiohttp tencentcloud-sdk-python python-dotenv
+uv add openai discord.py aiohttp tencentcloud-sdk-python python-dotenv yt-dlp
 ```
 
 ## 🚀快速开始
