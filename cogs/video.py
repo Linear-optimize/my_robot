@@ -9,7 +9,7 @@ class VideoCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="video", description="从支持的网站下载视频")
     async def video(self, ctx, url: str):
         await ctx.defer()
 

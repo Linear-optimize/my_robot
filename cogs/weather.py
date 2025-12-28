@@ -6,7 +6,7 @@ class WeatherCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="weather", description="询问天气")
     async def weather(self, ctx, city: str):
         await ctx.defer()
         session = self.bot.http_session

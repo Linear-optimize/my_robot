@@ -74,7 +74,7 @@ class BilibiliCog(commands.Cog):
         self.bot = bot
         self.updown = Updown()
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="bilibili", description="下载B站视频")
     async def bilibili(self, ctx, url: str):
         await ctx.defer()
 

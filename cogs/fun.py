@@ -6,15 +6,15 @@ class FunCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="ping", description="ping命令")
     async def ping(self, ctx):
         await ctx.send("pong")
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="add", description="加法")
     async def add(self, ctx, a: int, b: int):
         await ctx.send(a + b)
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="draw", description="图片")
     async def draw(self, ctx):
         await ctx.defer()
 

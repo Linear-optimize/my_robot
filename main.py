@@ -37,6 +37,7 @@ async def load_cogs():
     ]
     for cog in cogs:
         await bot.load_extension(cog)
+        print(f"✅ 成功加载扩展: {cog}")
 
 
 @bot.event
@@ -44,8 +45,9 @@ async def on_ready():
     if not hasattr(bot, "http_session"):
         bot.http_session = aiohttp.ClientSession()
     await load_cogs()
-    for guild in bot.guilds:
-        await bot.tree.sync(guild=guild)
+
+    await bot.tree.sync()
+
     print(f"{bot.user} 已上线！")
 
 

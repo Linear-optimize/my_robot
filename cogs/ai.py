@@ -6,7 +6,7 @@ class AiCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="ask", description="问问题")
     async def ask(self, ctx, question: str):
         await ctx.defer()
 

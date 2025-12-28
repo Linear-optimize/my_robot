@@ -8,7 +8,7 @@ class TranslateCog(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.hybrid_command()
+    @commands.hybrid_command(name="translate", description="翻译")
     async def translate(self, ctx, source: str, target: str, phrase: str):
         await ctx.defer()
 
