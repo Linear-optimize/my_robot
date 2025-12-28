@@ -27,7 +27,14 @@ async def synccommands(ctx):
 
 
 async def load_cogs():
-    cogs = ["cogs.fun", "cogs.ai", "cogs.translate", "cogs.weather", "cogs.video"]
+    cogs = [
+        "cogs.fun",
+        "cogs.ai",
+        "cogs.translate",
+        "cogs.weather",
+        "cogs.video",
+        "cogs.bilibili",
+    ]
     for cog in cogs:
         await bot.load_extension(cog)
 
