@@ -1,22 +1,25 @@
 # 一个简单的Discord机器人
 
 ## 📂项目结构
-```tree
-MY_ROBOT
-├── cogs
-│   ├── __init__.py
-│   ├── ai.py
-│   ├── fun.py
-│   ├── translate.py
-│   └── weather.py
-├── .env
-├── .gitignore
-├── .python-version
-├── LICENSE
-├── main.py
-├── pyproject.toml
-├── README.md
-└── uv.lock
+```
+my_robot
+├─ .python-version
+├─ cogs
+│  ├─ ai.py
+│  ├─ bilibili.py
+│  ├─ fun.py
+│  ├─ translate.py
+│  ├─ video.py
+│  ├─ weather.py
+│  └─ __init__.py
+├─ LICENSE
+├─ main.py
+├─ pyproject.toml
+├─ README.md
+├─ utils
+│  └─ updown_bilibili.py
+└─ uv.lock
+
 ```
 
 ## ✨功能特点
@@ -59,4 +62,5 @@ python main.py
 - [ ] 错误处理: 增加全局异常捕获，防止 API 调用失败导致崩溃。
 - [ ] 日志系统: 接入 logging 模块，记录指令调用频率与错误堆栈
 - [ ] 配置优化: 统一 .env 变量命名规范，增强代码可读性
+
 
